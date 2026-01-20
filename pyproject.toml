@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "A Python Library."
 readme = "README.md"
 requires-python = ">=3.9"
-license = {text = "CC-BY-NC-4.0"}
+license = {text = "Apache-2.0"}
 authors = [
     {name = "HeartMuLa Team", email = "heartmula.ai@gmail.com"}
 ]
@@ -35,7 +35,6 @@ dependencies = [
 urls = { "homepage" = "https://heartmula.github.io/" }
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: Other/Proprietary License",
     "Operating System :: OS Independent"
 ]
 
