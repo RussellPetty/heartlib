@@ -2,6 +2,8 @@ FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
+ENV MODEL_PATH=/app/ckpt
+ENV MODEL_VERSION=3B
 
 # Install Python and system dependencies
 RUN apt-get update && apt-get install -y \
@@ -23,11 +25,11 @@ WORKDIR /app
 # Copy project files
 COPY . .
 
-# Install the package
-RUN pip install --no-cache-dir .
+# Install the package and runpod
+RUN pip install --no-cache-dir . runpod
 
 # Create directory for model checkpoints
 RUN mkdir -p /app/ckpt
 
-# Default command - can be overridden
-CMD ["python", "-c", "print('HeartLib container ready. Mount model checkpoints to /app/ckpt')"]
+# Run the RunPod handler
+CMD ["python", "handler.py"]
