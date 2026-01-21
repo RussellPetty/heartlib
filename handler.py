@@ -1,9 +1,30 @@
 import runpod
-import torch
-import base64
-import tempfile
-import os
-from heartlib import HeartMuLaGenPipeline
+import sys
+import traceback
+
+print("Starting handler...", flush=True)
+
+try:
+    import torch
+    print(f"PyTorch version: {torch.__version__}", flush=True)
+    print(f"CUDA available: {torch.cuda.is_available()}", flush=True)
+    if torch.cuda.is_available():
+        print(f"CUDA device: {torch.cuda.get_device_name(0)}", flush=True)
+except Exception as e:
+    print(f"Error importing torch: {e}", flush=True)
+    traceback.print_exc()
+    sys.exit(1)
+
+try:
+    import base64
+    import tempfile
+    import os
+    from heartlib import HeartMuLaGenPipeline
+    print("HeartLib imported successfully", flush=True)
+except Exception as e:
+    print(f"Error importing heartlib: {e}", flush=True)
+    traceback.print_exc()
+    sys.exit(1)
 
 # Global model variable - loaded once on cold start
 pipe = None
