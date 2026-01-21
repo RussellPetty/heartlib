@@ -24,7 +24,7 @@ WORKDIR /app
 COPY . .
 
 # Install the package
-RUN pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir .
 
 # Create directory for model checkpoints
 RUN mkdir -p /app/ckpt
